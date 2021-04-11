@@ -1,0 +1,52 @@
+<!--Create Slot-->
+<mat-card class="card">
+  <mat-card-title>
+    Add Parking Details
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="parkingSlotForm" (ngSubmit)="createSlot()">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field class="demo-full-width mrgRight">
+              <input type="text" maxlength="2" appNumberOnly formControlName="slot" matInput placeholder="No.">
+            </mat-form-field>
+          </td>
+
+          <td colspan="2" class="content-center">
+            <button mat-raised-button color="accent" class="mrgRight createBtn">Create Slot</button>
+          </td>
+          <td colspan="2" class="content-center">
+            <button mat-raised-button color="accent" class="resetBtn" (click)="resetSlots()">Reset</button>
+          </td>
+
+        </tr>
+      </table>
+    </form>
+
+    <form [formGroup]="parkingCarForm" (ngSubmit)="parkCar()">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field class="demo-full-width regWdgth">
+              <input type="text" maxlength="10" formControlName="carRegistrationNumber" matInput
+                placeholder="Car registeration number ex. GJO1AB1234">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width mrgleft mrgRight">
+              <input type="text" formControlName="carColor" appAlphabetOnly matInput placeholder="Car Color ex. white">
+            </mat-form-field>
+
+          </td>
+          <td colspan="2" class="content-center" *ngIf="parkingCarForm.valid">
+            <button mat-raised-button color="accent" class="createBtn">Park Car</button>
+          </td>
+
+        </tr>
+      </table>
+    </form>
+
+  </mat-card-content>
+</mat-card>
+
+<app-parking-list [parkedCarList]="parkedCarList" (deleteCar)="deleteCar($event)"></app-parking-list>

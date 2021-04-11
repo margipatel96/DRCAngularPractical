@@ -1,0 +1,14 @@
+.matTbl{
+    width: 95%;  
+}
+.card{ 
+    background-color: #eee;
+    width: auto;
+    margin: 3%;
+}
+.regWdgth{
+    width: 250px;
+}
+.mrgRight{
+    margin-right: 50px;
+}

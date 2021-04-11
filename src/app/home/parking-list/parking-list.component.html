@@ -1,0 +1,76 @@
+<mat-card class="card">
+  <mat-card-title>
+    Parking List
+  </mat-card-title>
+  <mat-card-content>
+    <div>
+      <mat-form-field class="demo-full-width mrgRight regWdgth">
+        <input matInput placeholder="Search by registeration number" [(ngModel)]="registrationNumber" (ngModelChange)="applyFilter()">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="mrgRight regWdgth">
+        <mat-label>Color filter</mat-label>
+        <mat-select [(ngModel)]="carColor" (ngModelChange)="applyFilter()">
+            <mat-option [value]="null">All</mat-option>
+            <mat-option *ngFor="let color of colorList" [value]="color">
+            {{color}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="mrgRight regWdgth">
+        <mat-label>Slot</mat-label>
+        <mat-select [(ngModel)]="carSlot" (ngModelChange)="applyFilter()">
+            <mat-option [value]="null">All</mat-option>
+            <mat-option *ngFor="let slot of slotList" [value]="slot">
+            {{slot}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="regWdgth">
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="carCity" (ngModelChange)="applyFilter()">
+            <mat-option [value]="null">All</mat-option>
+            <mat-option *ngFor="let city of cityList" [value]="city">
+            {{city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8 matTbl">
+      <ng-container matColumnDef="Sr No.">
+        <th mat-header-cell *matHeaderCellDef>Sr No.</th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Car Registration Number">
+        <th mat-header-cell *matHeaderCellDef>Car Registration Number</th>
+        <td mat-cell *matCellDef="let element"> {{element.carRegistrationNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Car Color">
+        <th mat-header-cell *matHeaderCellDef>Car Color</th>
+        <td mat-cell *matCellDef="let element"> {{element.carColor}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Slot">
+        <th mat-header-cell *matHeaderCellDef>Slot</th>
+        <td mat-cell *matCellDef="let element"> {{element.carSlotNumber || ''}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Action (Delete)</th>
+        <td mat-cell *matCellDef="let element" (click)="deleteParkedCar(element)">{{element.carSlotNumber ? 'Delete' : '' }}  </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div *ngIf="dataSource.data.length === 0">
+        No Records Found!
+    </div>
+
+  </mat-card-content>
+</mat-card>

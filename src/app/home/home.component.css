@@ -1,0 +1,22 @@
+.card{
+    width: 100px;
+    background-color: #eee;
+    width: 50%;
+    margin: 3%;
+}
+.mrgleft{
+    margin-left: 20px;
+}
+.mrgRight{
+    margin-right: 20px;
+}
+.createBtn{
+    background-color: #4f8c00 !important;
+}
+.resetBtn{
+    background-color: gray !important;
+}
+.regWdgth{
+    width: 300px;
+}
+
